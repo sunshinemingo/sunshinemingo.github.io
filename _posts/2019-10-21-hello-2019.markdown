@@ -1,0 +1,24 @@
+---
+layout:     post
+title:      "Welcome to Haoyue Blog"
+subtitle:   " \"Hello World, Hello Blog\""
+date:       2019-10-21 20:00:00
+author:     "Haoyue"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - 生活
+---
+
+> “Yeah It's on. ”
+
+
+## 前言
+
+Haoyue 的 Blog 就这么开通了。
+
+总有一些时间想要写点什么，或许是自己的心情，或许是最近的乱七八糟的想法，或许是一些跟学习相关的事情。
+
+觉得自己是个爱说，也很爱写文字的人。文字所能表达的感情是细腻的，而且，它可以代替我们记住我们可能会忘记的一些事情。
+
+当某天回过头发现，原来曾经的自己做过这样或者那样的傻事，也许是一种不一样的体验。
+
