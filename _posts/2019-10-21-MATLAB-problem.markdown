@@ -15,18 +15,8 @@ header-img: "img/post-bg-js-module.jpg"
 关于MATLAB安装MinGW-w64 C/C++编译器的教程有很多，在这里我就不重复了，就说一说我遇到的问题吧。
 在命令行中输入mex -setup的时候，显示如下：
 
-```html
-mex -setup
-MEX 配置为使用 ‘MinGW64 Compiler ©’ 以进行 C 语言编译。
-警告: MATLAB C 和 Fortran API 已更改，现可支持
-包含 2^32-1 个以上元素的 MATLAB 变量。不久以后，
-您需要更新代码以利用
-新的 API。您可以在以下网址找到相关详细信息:
-http://www.mathworks.com/help/matlab/matlab_external/upgrading-mex-files-to-use-64-bit-api.html。
-要选择不同的语言，请从以下选项中选择一种命令:
-mex -setup C++
-mex -setup FORTRAN
-```
+![img](https://github.com/sunshinemingo/sunshinemingo.github.io/raw/master/img/image_md/image_16.png)
+
 此时如果使用make进行编译的话是会报错的（如果报错提示你没有权限访问，那需要以管理员的身份运行MATLAB）。
 没有合适的编译器进行编译，那么如何找到合适的编译器呢？在MATLAB 2016之后的版本中，MATLAB安装目录\bin\win64\mexopts目录中有各种编译器的配置文件，MATLAB就是利用这些xml文件和编译器建立关联：
 ![img](https://github.com/sunshinemingo/sunshinemingo.github.io/raw/master/img/image_md/image_02.png)

@@ -10,7 +10,7 @@ header-img: "img/post-bg-unix-linux.jpg"
 
 ## 安装tensorflow-gpu：ImportError: DLL load failed:找不到指定的模块(Windows版本) 解决方案
 在按照教程安装tensorflow-gpu的过程中，出现ImportError: DLL load failed:找不到指定的模块:
-```python
+```C
 (tensorflow) C:\Users\Administrator>python
 Python 3.6.3 |Anaconda, Inc.| (default, Mar  4 2019, 15:10:56) [MSC v.1900 64 bit (AMD64)] on win32
 Type "help", "copyright", "credits" or "license" for more information.
@@ -60,15 +60,14 @@ for some common reasons and solutions.  Include the entire stack trace
 above this error message when asking for help.
 ```
 搜索网上的解决方法，有博客说道：
-```html
-1.错误提示为DLL load failed，说明缺少一些必须的DLL模块，可以尝试安装Microsoft Visual C++ 2015 Redistributable程序。
-2.在anaconda中重新安装tensorflow。
-3.重新配置cuda和cudnn模块。可能是之前用别的深度学习模块时，改变了cuda和cudnn的配置。检查一下电脑中的cuda和cudnn配置，改为cuda8.0和cudnn-8.0-windows10-x64-v6.0版本（或其他和tensorflow配套的版本）。
+1. 错误提示为DLL load failed，说明缺少一些必须的DLL模块，可以尝试安装Microsoft Visual C++ 2015 Redistributable程序。
+2. 在anaconda中重新安装tensorflow。
+3. 重新配置cuda和cudnn模块。可能是之前用别的深度学习模块时，改变了cuda和cudnn的配置。检查一下电脑中的cuda和cudnn配置，改为cuda8.0和cudnn-8.0-windows10-x64-v6.0版本（或其他和tensorflow配套的版本）。
 尝试上述的3种方法也许可以解决tensorflow启动报错：DLL load failed的问题。
 虽然通过以上几种方法确实可以解决问题，但是方法并不直接，没有确定缺少DLL的原因。
-```
+
 可以通过类似于下面的方法确定缺少的DLL（通过dumpbin.exe确定依赖的DLL）：
-```html
+```c
 "c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\dumpbin.exe" /dependents C:\Users\username\AppData\Local\Programs\Python\Python36\lib\site-packages\tensorflow\python\_pywrap_tensorflow_internal.pyd
 ```
 得到的输出类似于：
