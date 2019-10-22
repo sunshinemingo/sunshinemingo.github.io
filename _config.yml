@@ -14,7 +14,7 @@ future: true
 # SNS settings
 RSS: false
 #weibo_username:     3221226647
-zhihu_username:     sunshine-8-98
+#zhihu_username:     sunshine-8-98
 github_username:    sunshinemingo
 twitter_username:   Xiaoyue05311611
 facebook_username:  xiaoyue.wang.90410
