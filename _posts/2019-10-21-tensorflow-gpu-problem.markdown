@@ -67,7 +67,7 @@ above this error message when asking for help.
 虽然通过以上几种方法确实可以解决问题，但是方法并不直接，没有确定缺少DLL的原因。
 
 可以通过类似于下面的方法确定缺少的DLL（通过dumpbin.exe确定依赖的DLL）：
-```c
+```html
 "c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\dumpbin.exe" /dependents C:\Users\username\AppData\Local\Programs\Python\Python36\lib\site-packages\tensorflow\python\_pywrap_tensorflow_internal.pyd
 ```
 得到的输出类似于：
