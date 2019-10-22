@@ -15,7 +15,7 @@ header-img: "img/post-bg-js-module.jpg"
 关于MATLAB安装MinGW-w64 C/C++编译器的教程有很多，在这里我就不重复了，就说一说我遇到的问题吧。
 在命令行中输入mex -setup的时候，显示如下：
 
-```
+```html
 mex -setup
 MEX 配置为使用 ‘MinGW64 Compiler ©’ 以进行 C 语言编译。
 警告: MATLAB C 和 Fortran API 已更改，现可支持
