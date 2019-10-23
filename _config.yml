@@ -13,10 +13,10 @@ future: true
 
 # SNS settings
 RSS: false
-weibo_username:     3221226647
+#weibo_username:     3221226647
 zhihu_username:     sunshine-8-98
 github_username:    sunshinemingo
-#twitter_username:   Xiaoyue05311611
+twitter_username:   Xiaoyue05311611
 facebook_username:  xiaoyue.wang.90410
 #linkedin_username:  firstname-lastname-idxxxx
 
@@ -62,7 +62,7 @@ kramdown:
 #disqus_username: hux
 
 # Netease settings
-netease_comment: false
+#netease_comment: false
 
 
 
