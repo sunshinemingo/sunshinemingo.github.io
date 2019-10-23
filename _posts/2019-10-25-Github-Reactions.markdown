@@ -4,7 +4,7 @@ title:      "《Beyond Textual Issues: Understanding the Usage and Impact of Git
 subtitle:   "Wants to make reading books interesting?"
 date:       2019-10-25
 author:     "Haoyue"
-header-img: "img/post-bg1-reactions.jpg"
+header-img: "img/post-bg-reactions.jpg"
 tags:
     - 读书
     - 生活
