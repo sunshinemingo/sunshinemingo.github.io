@@ -9,7 +9,7 @@ tags:
     - 读书
     - JavaScript
 ---
-# 《StoryGAN: A Sequential Conditional GAN for Story Visualization》读书笔记
+## 《StoryGAN: A Sequential Conditional GAN for Story Visualization》读书笔记
 
 阅读小说是一件很有趣的事情，但是没有插图的故事往往索然无味。特别是儿童书籍，缺乏插图可能会让故事变得无聊。
 
