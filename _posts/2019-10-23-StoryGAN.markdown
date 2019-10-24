@@ -70,7 +70,7 @@ Pororo-SV数据集基于Pororo数据集进行修改，将每个视频片段的�
 
 #### 3. Human Evaluation
 在人为评价方面，文中先从视觉质量、一致性以及相关性三个方面对StoryGAN和ImageGAN进行了比较，结果显示StoryGAN明显优于ImageGAN。
-接下来分别对四个模型基于特定的故事生成的图像的整体质量进行比较，发现StoryGAN的平均排名最高，而ImageGAN的排名最差。
+接下来分别对四个模型基于特定故事生成的图像的整体质量进行比较，发现StoryGAN的平均排名最高，而ImageGAN的排名最差。
 
 
 ## 四、Conclusion
