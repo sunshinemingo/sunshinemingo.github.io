@@ -30,7 +30,7 @@ Story Encoder将故事描述语句$S$随机映射到一个低维的向量空间�
 
 #### 2. Context Encoder
 Context Encoder基于深层RNN网络构建，包含两个隐藏层，GRU单元和Text2Gist单元，其中，Text2Gist单元是GRU单元的变体。
-在时间步$t$，GRU层接受句子$s_t$和等距高斯噪声$\epsilon_t$作为输入，并输出向量$i_t$。Text2Gist 单元将GRU的输出$i_t$和Story Encoder的输出$h_{t-1}$结合（$h_{t-1}$来自Story Encoder），生成$O_t$。$O_t$编码了在时间步$t$需要生成图像的所有必要信息。
+在时间步$t$，GRU层接受句子$s_t$和等距高斯噪声$\epsilon_t$作为输入，并输出向量$i_t$。Text2Gist 单元将GRU的输出$i_t$和Story Encoder的输出$h_{t-1}$结合（$h_{t-1}$来自Story Encoder），生成$O_t$。$O_t$编码了在时间步$t$生成图像需要的所有必要信息。
 ![img](https://github.com/sunshinemingo/sunshinemingo.github.io/raw/master/img/image_md/image_19.png)
 
 $h_t$由Text2Gist更新，以反映潜在的语境信息变化。$O_t$是Gist向量（高维特征向量），它分别结合了来自$h_{t-1}$的全局语境和$i_t$在时间步t的局部语境信息。Story Encoder初始化了$h_0$，而$g_0$则是从等距高斯噪声分布中随机采样得到。然后$O_t$输入到Image Generator中，生成图像样本${\hat{x}}_t$。在时间步$t$，Text2Gist详细的更新公式如下所示：
