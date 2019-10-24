@@ -30,60 +30,52 @@ Github推出的Reactions功能可以让开发者们快速地表达自己对于is
 ## 二、Study Design
 文中从**Reactions的使用**和**Reactions的影响**两方面，共**9**个问题进行了调查研究。其中，Reactions的使用方面包含了5个问题，Reactions的影响方面包含了4个问题。
 ###### Reactions的使用：
-问题1：Do developers use reactions?
-
-问题2：What are the most common reactions?
-
-问题3：How is the usage of reactions evolving?
-
-问题4：Do popular projects have more reactions?
-
-问题5：Do certain types of issues have more reactions?
-
+问题1：Do developers use reactions?  
+问题2：What are the most common reactions?  
+问题3：How is the usage of reactions evolving?  
+问题4：Do popular projects have more reactions?  
+问题5：Do certain types of issues have more reactions?  
 ###### Reactions的影响：
-问题6：Do issues with more reactions get resolved faster?
-
-问题7：Do issues with more reactions have more discussion?
-
-问题8：Do negative reactions inhibit further participation? 
-
-问题9：Do reactions reduce the noise in issue discussions?
+问题6：Do issues with more reactions get resolved faster?  
+问题7：Do issues with more reactions have more discussion?  
+问题8：Do negative reactions inhibit further participation?   
+问题9：Do reactions reduce the noise in issue discussions?  
 
 文中只对issues及其相关的评论中的Reactions进行了分析。研究人员收集了自2016年3月13日，即Reactions功能正式发布后的项目中的issues，一共从4841个Github项目中收集了2544304个issues和9775928条评论，平均每个issue有3.84条评论。并且这些项目由70种不同的编程语言实现。
 
 ## 三、Result
-##### 问题1：Do developers use reactions?
+#### 问题1：Do developers use reactions?
 在文中使用的数据集中，87.0%的issues和89.3%的评论没有使用reactions。但是如果考虑整个issues的过程(包括issues和评论)，发现有28.4%至少含有一个reaction。
 MICROSOFT/VSCODE项目中的issue——*Allow for floating windows*拥有最多的reactions(3654个reactions)；至于评论，WEBASSEMBLY/DESIGN项目中的issue——*#980 – WebAssembly logo voting*的评论中的reactions数目最多。
 此外，研究者们还发现，使用C++语言实现的项目获得的reactions最多，Objective-C语言实现的项目获得的reactions最少，猜测原因是iOS开发正转向Swift，因此，Objective-C项目可能会被弃用。
 
-##### 问题2：What are the most common reactions?
+#### 问题2：What are the most common reactions?
 ***Thumbs up*** 是最常用的reaction(78.7%)，其次是 ***Hooray*** 和 ***Heart***，两者的占比均为5.9%，然后是 ***Thumbs down***(5.0%)。***Confused*** 是最不常用的reaction(1.7%)。
 
-##### 问题3：How is the usage of reactions evolving?
+#### 问题3：How is the usage of reactions evolving?
 自从GitHub推出reactions以来，reactions的使用在不断增加。
 在2018年，开发者使用的reactions比2017年增加了32.5％。相比之下，自2016年以来，每月的新issues的数量几乎保持不变。至于每种reaction类型的发展，发现现有的reactions的发展方式没有很大区别。
 
-##### 问题4：Do popular projects have more reactions?**
+#### 问题4：Do popular projects have more reactions?**
 项目的受欢迎程度与其获得的reactions的数量之间基本没有关联关系。
 
-##### 问题5：Do certain types of issues have more reactions?
+#### 问题5：Do certain types of issues have more reactions?
 文中针对八个类型的issues进行了分析，分别是*bug*，*duplicate*，*enhancement*，*invalid*，*question*，*wontfix*，*help*和*stale*，其中 ***bug*** 是最常见的issues类型。
 当只考虑*bugs*和*enhancemnets*的时候，***enhancement*** 类型的issues经常获得reactions，每个*bug*获得的reactions的数量(0.35)比每个*enhancement*获得的reactions的数量(1.39)低四倍。
 而且，issue和reaction的类型之间存在关联。*Thumbs down*，*Laugh*和*Confused*在无效的issues中最为常见。
 
-##### 问题6：Do issues with more reactions get resolved faster?
+#### 问题6：Do issues with more reactions get resolved faster?
 针对该问题，文中分析了*bugs*和*enhancement*类型的issues，并且只分析至少含有102个issues的仓库。
 含有reactions的*bugs*和*enhancement*的issues需要更长的时间才能关闭，猜测是因为这些issues比较复杂，需要开发者更多的时间去解决。
 
-##### 问题7：Do issues with more reactions have more discussion?
+#### 问题7：Do issues with more reactions have more discussion?
 文中比较了*bugs*和*enhancements*类型中没有reactions和至少含有两个reactions的issues中讨论的数量。含有reactions的*bugs*和*enhancements*类型的issues需要更长时间的讨论。
 因此，reactions倾向于出现在需要进行更多讨论的相对复杂的issues中。
 
-##### 问题8：Do negative reactions inhibit further participation?
+#### 问题8：Do negative reactions inhibit further participation?
 大多数开发者收到的负面reactions很少，而其他开发者可能收到很多。与其他社交平台不同，负面reactions不会影响GitHub的开发者参与进某一仓库，并进行下一步的开发。
 
-##### 问题9：Do reactions reduce the noise in issue conversations?
+#### 问题9：Do reactions reduce the noise in issue conversations?
 Reactions没有减少评论中表情符号的使用，但是评论中只使用一个*Thumbs up*表情符号的现象急剧减少。
 
 ## 四、Practical Recommendation
