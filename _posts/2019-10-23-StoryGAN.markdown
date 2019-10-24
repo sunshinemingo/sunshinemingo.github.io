@@ -58,6 +58,7 @@ CLEVR-SV数据集基于CLEVR数据集进行修改；
 * 物体由金属或橡胶制成，有八种颜色和两种尺寸；
 * 物体可以是圆柱体、立方体或球体；
 * 每次增加一个物体，直到一个故事中有四幅图像序列。
+
 结果表明，ImageGAN不能保持“故事”的一致性，当物体的数量增加时，它会混淆物体的属性；SVC模型虽然没有出现一致性问题，但是在SVC生成的图像序列中出现了一个难以置信的外置图像；SVFN能在一定程度上缓解SVC出现的问题，但不能完全缓解。相比之下，StoryGAN生成的图像序列更加合理。
 此外，文中还比较了生成的图像与ground-truth之间的结构相似指数(SSIM)，结果显示，StoryGAN显著地优于其他模型。
 ![img](https://github.com/sunshinemingo/sunshinemingo.github.io/raw/master/img/image_md/image_25.png)
