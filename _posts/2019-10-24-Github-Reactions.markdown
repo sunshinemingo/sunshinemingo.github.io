@@ -2,7 +2,7 @@
 layout:     post
 title:      "《Beyond Textual Issues: Understanding the Usage and Impact of GitHub Reactions》读书笔记"
 subtitle:   "Analysis of the real usage and impact of GitHub reactions"
-date:       2019-10-25
+date:       2019-10-24
 author:     "Haoyue"
 header-img: "img/post-bg-reactions.jpg"
 tags:
@@ -57,7 +57,7 @@ MICROSOFT/VSCODE项目中的issue——*Allow for floating windows*拥有最多�
 自从GitHub推出reactions以来，reactions的使用在不断增加。
 在2018年，开发者使用的reactions比2017年增加了32.5％。相比之下，自2016年以来，每月的新issues的数量几乎保持不变。至于每种reaction类型的发展，发现现有的reactions的发展方式没有很大区别。
 
-#### 问题4：Do popular projects have more reactions?**
+#### 问题4：Do popular projects have more reactions?
 项目的受欢迎程度与其获得的reactions的数量之间基本没有关联关系。
 
 #### 问题5：Do certain types of issues have more reactions?
