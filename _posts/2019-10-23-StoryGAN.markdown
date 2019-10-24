@@ -15,7 +15,9 @@ tags:
 
 ## 一、Challenges
 阅读小说是一件很有趣的事情，但是没有插图的故事往往索然无味。特别是儿童书籍，缺乏插图可能会让故事变得无聊。让模型基于自然语言学习，然后生成有意义且连贯的图像序列是一个有挑战的任务。
+
 第一，图像序列必须连贯且完整地描述整个故事。这与文本-图像生成紧密相关，即根据简单的描述生成图像。
+
 第二，如何有逻辑地呈现故事情节。具体来说，图像中个体的外观和背景布局必须根据故事情节推进，并以恰当的方式呈现。
 
 ## 二、StoryGAN
@@ -51,7 +53,7 @@ StoryGAN的目标函数为：
 ![img](https://github.com/sunshinemingo/sunshinemingo.github.io/raw/master/img/image_md/image_24.png)
 
 ## 三、Experiment
-实验中与StoryGAN进行比较的模型是ImageGAN、SVC和SVFN，其中，SVC和SVNF是StoryGAN的简化形式，使用的数据集为CLVER-SV Dataset和Pororo-SV Dataset。
+实验中与StoryGAN进行比较的模型是ImageGAN、SVC和SVFN，其中，SVC和SVFN是StoryGAN的简化形式，使用的数据集为CLVER-SV Dataset和Pororo-SV Dataset。
 #### 1. CLEVR-SV Dataset
 CLEVR-SV数据集基于CLEVR数据集进行修改； 
 * 将一个故事中的目标数量最多限制在4个；
@@ -65,11 +67,13 @@ CLEVR-SV数据集基于CLEVR数据集进行修改；
 
 #### 2. Pororo-SV Dataset
 Pororo-SV数据集基于Pororo数据集进行修改，将每个视频片段的描述作为故事的文本输入。对于每个视频片段，随机提取一帧画面（采样率为30Hz）作为真实的图像样本用于训练。五个连续的图像组成一个完整故事。
-结果表明，ImageGAN不能生成一致的图像序列；SVC和SVFN可以在一定程度上改善生成的图像序列中的角色外观的不一致性，此外还在实验中改变了故事中角色的名字。结果显示，StoryGAN在图像质量以及故事一致性上都要优于其他模型。
+
+结果表明，ImageGAN不能生成一致的图像序列；SVC和SVFN可以在一定程度上改善生成的图像序列中角色外观的不一致性，此外还在实验中改变了故事中角色的名字。结果显示，StoryGAN在图像质量以及故事一致性上都要优于其他模型。
 ![img](https://github.com/sunshinemingo/sunshinemingo.github.io/raw/master/img/image_md/image_26.png)
 
 #### 3. Human Evaluation
 在人为评价方面，文中先从视觉质量、一致性以及相关性三个方面对StoryGAN和ImageGAN进行了比较，结果显示StoryGAN明显优于ImageGAN。
+
 接下来分别对四个模型基于特定故事生成的图像的整体质量进行比较，发现StoryGAN的平均排名最高，而ImageGAN的排名最差。
 
 
