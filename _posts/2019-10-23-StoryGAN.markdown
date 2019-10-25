@@ -39,7 +39,7 @@ $h_t$由Text2Gist更新，以反映潜在的语境信息变化。$O_t$是Gist向
 ![img](https://github.com/sunshinemingo/sunshinemingo.github.io/raw/master/img/image_md/image_20.png)
 
 #### 3. Discriminators
-模型中存在两个判别器：基于深度神经网络的Image Discriminator，保持生成图像的局部一致性；基于多层感知机的Story Discriminator，保持生成图像的全局一致性。
+模型中存在两个判别器：Image Discriminator，保持生成图像的局部一致性；Story Discriminator，保持生成图像的全局一致性。
 Image Discriminator只是用来判别生成图像是否足够真实；Story Discriminator的原理如下图所示：
 ![img](https://github.com/sunshinemingo/sunshinemingo.github.io/raw/master/img/image_md/image_21.png)
 将输入的语句和相应的生成图像分别降维得到它们的特征向量，然后各自拼接起来送到一个包含Sigmoid的全连接网络中，判别生成的图像是否在语义上具有连贯性。
@@ -56,7 +56,7 @@ StoryGAN的目标函数为：
 实验中与StoryGAN进行比较的模型是ImageGAN、SVC和SVFN，其中，SVC和SVFN是StoryGAN的简化形式，使用的数据集为CLVER-SV Dataset和Pororo-SV Dataset。
 #### 1. CLEVR-SV Dataset
 CLEVR-SV数据集基于CLEVR数据集进行修改； 
-* 将一个故事中的目标数量最多限制在4个；
+* 一个故事中的物体数量最多为4个；
 * 物体由金属或橡胶制成，有八种颜色和两种尺寸；
 * 物体可以是圆柱体、立方体或球体；
 * 每次增加一个物体，直到一个故事中有四幅图像序列。
