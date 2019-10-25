@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "你&我，未来可期"
-subtitle:   "我能想到最浪漫的事，就是和你看花开花落、云卷云舒；岁月静好，陪你慢慢变老"
+subtitle:   "我能想到最浪漫的事，就是和你一起看花开花落、云卷云舒；岁月静好，陪你慢慢变老"
 date:       2019-10-25
 author:     "Haoyue"
 header-img: "img/post-bg-motion-love.jpg"
