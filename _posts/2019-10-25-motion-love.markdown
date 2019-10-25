@@ -13,7 +13,16 @@ tags:
 
 我能想到最浪漫的事，就是和你一起慢慢变老。
 
+我曾经想了很多次我们会有的未来，但是你每一次听到我口中的未来的时候，你都会跟我说，不要想那么多，慢慢地，我真的学会不再想那么多了， 慢慢地，也不再去憧憬有你的未来。
 
-![img](https://github.com/sunshinemingo/sunshinemingo.github.io/raw/master/img/image_md/image_28.png)
+虽然我会怀疑我们是不是还合适在一起，但是一想到难过的时候还可以得到你的支持，一想到我们曾经一起经历了那么多，我就会舍不得，所以还是老老实实地待在你身边吧，不折腾了，年纪不小了，没有可以玩的资本了。
 
+![img](https://github.com/sunshinemingo/sunshinemingo.github.io/raw/master/img/image_md/image_29.jpg)
 
+你是标标准准的理工男，一点都不浪漫，不会给我制作惊喜，不懂得我的口是心非，让我一度怀疑你是不是爱我，我吧，虽然是一个理工女，但是有一颗文艺的心，有时候我也想生活中能有点惊喜，要不然岂不是太无趣了吗？
+
+我们俩的相处方式好像还缺少了一些仪式感，其实仪式感还挺重要的呢，关于仪式感是什么，请自行百度吧，我就不在这里赘述了。
+
+![img](https://github.com/sunshinemingo/sunshinemingo.github.io/raw/master/img/image_md/image_30.jpg)
+
+希望以后我们都慢慢变好，变得更适合对方，都不要再让对方那么累了，这一次，我选择相信我们有未来，相信你会给我一个家～
