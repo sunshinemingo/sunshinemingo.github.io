@@ -2,7 +2,7 @@
 layout:     post
 title:      "《Graph Neural Networks- A Review of Methods and Applications》读书笔记"
 subtitle:   "Analysis of the real usage and impact of GitHub reactions"
-date:       2019-10-24
+date:       2019-10-30
 author:     "Haoyue"
 header-img: "img/post-bg-reactions.jpg"
 tags:

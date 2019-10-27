@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "《Hybrid Neural Networks for Learning the Trend in Time Series》读书笔记"
-subtitle:   "Analysis of the real usage and impact of GitHub reactions"
+subtitle:   "A novel end-to- end hybrid neural network to predict the trend of time series."
 date:       2019-10-27
 author:     "Haoyue"
 header-img: "img/post-bg-time-series.jpg"
@@ -19,8 +19,7 @@ tags:
 
 预测时间序列的趋势需要考虑到数据不同方面的信息。一方面，时间序列的趋势变化是历史趋势的序列，它具有时间序列长期的语义信息，会影响后续趋势的变化。另一方面，时间序列最近的原始数据点代表了时间序列的局部行为，也影响了后续趋势的变化，同时对突然变化的趋势具有特别的预测能力。
 
-由于神经网络的发展，卷积神经网络(CNN)和循环神经网络(RNN)被用于时间序列的不同任务中。RNN具有很强的序列相关性，特别是长短期记忆网络(LSTM)，由于其内部的记忆机制，对具有长期相关性的序列数据具有良好的性能。CNN通过加强神经元之间的局部连接，能够从时间序列的原始数据中提取局部的显著性特征。
-关于混合神经网络在时间序列数据的预测趋势问题的使用，目前相关研究还不是很多。
+由于神经网络的发展，卷积神经网络(CNN)和循环神经网络(RNN)被用于时间序列的不同任务中。RNN具有很强的序列相关性，特别是长短期记忆网络(LSTM)，由于其内部的记忆机制，对具有长期相关性的序列数据具有良好的性能。CNN通过加强神经元之间的局部连接，能够从时间序列的原始数据中提取局部的显著性特征。关于混合神经网络在时间序列数据的预测趋势问题的使用，目前相关研究还不是很多。
 
 ## 二、TreNet
 文中只针对单变量时间序列预测子序列的趋势，通过扩充训练数据，可以将TreNet推广到多元时间序列。TreNet的思想是将CNN和LSTM结合起来，以利用它们在数据不同方面的表示能力，并学习用于趋势预测的联合特征。
@@ -28,15 +27,15 @@ TreNet学习的预测函数的输入由两部分组成，分别是LSTM从历史�
 
 ![img](https://github.com/sunshinemingo/sunshinemingo.github.io/raw/master/img/image_md/image_31.png)
 
-#### Learning the dependency in the historical trend sequence
+#### 1. Learning the dependency in the historical trend sequence
 在训练阶段，历史趋势序列中的每个趋势的时间以及斜率都被输入到TreNet中的LSTM层，LSTM层中的每个神经元在每一时间步都保持一个记忆。记忆单元通过遗忘部分现有的记忆，增加新的记忆内容来进行更新，遗忘门调节现有记忆被遗忘的程度，输入门对新的记忆内容被添加到记忆单元中的程度进行调节。
 ![img](https://github.com/sunshinemingo/sunshinemingo.github.io/raw/master/img/image_md/image_32.png)
 ![img](https://github.com/sunshinemingo/sunshinemingo.github.io/raw/master/img/image_md/image_33.png)
 
-#### Learning local features from raw data of time series
+#### 2. Learning local features from raw data of time series
 当第k个历史趋势被输入到LSTM层中时，相应的局部原始数据被输入到TreNet的CNN层中。CNN层是由H个一维卷积层、激活层和池化层组成的堆叠层组成。每一层有特定的滤波尺寸和特定数量的滤波器，每个滤波器扫描整个数据集，提取局部特征。TreNet中CNN层的输出是最后一层H上最大池化的输出的串接。
 
-#### Feature fusion and output layers
+#### 3. Feature fusion and output layers
 特征融合层结合LSTM层和CNN层的输出表示得到联合特征，然后将联合特征输入到输出层中进行趋势的预测。其中，LSTM层和CNN层的输出需要映射到相同的特征空间，然后相加得到特征融合层的激活。输出层是在特征融合层后的全联接层。
 ![img](https://github.com/sunshinemingo/sunshinemingo.github.io/raw/master/img/image_md/image_34.png)
 
