@@ -2,7 +2,7 @@
 layout:     post
 title:      "《Hybrid Neural Networks for Learning the Trend in Time Series》读书笔记"
 subtitle:   "Analysis of the real usage and impact of GitHub reactions"
-date:       2019-10-24
+date:       2019-10-27
 author:     "Haoyue"
 header-img: "img/post-bg-time-series.jpg"
 tags:
@@ -16,7 +16,9 @@ tags:
 
 ## 一、Background
 时间序列是按时间顺序进行排序的数据点序列。在许多应用领域，预测时间序列的趋势非常有用，例如智能能源领域和股票市场。但是对于特定数据点的传统预测只能提供很少的关于时间序列的潜在语义和动态信息。传统的时间序列趋势学习方法主要是隐马尔可夫模型和多步预测。
+
 预测时间序列的趋势需要考虑到数据不同方面的信息。一方面，时间序列的趋势变化是历史趋势的序列，它具有时间序列长期的语义信息，会影响后续趋势的变化。另一方面，时间序列最近的原始数据点代表了时间序列的局部行为，也影响了后续趋势的变化，同时对突然变化的趋势具有特别的预测能力。
+
 由于神经网络的发展，卷积神经网络(CNN)和循环神经网络(RNN)被用于时间序列的不同任务中。RNN具有很强的序列相关性，特别是长短期记忆网络(LSTM)，由于其内部的记忆机制，对具有长期相关性的序列数据具有良好的性能。CNN通过加强神经元之间的局部连接，能够从时间序列的原始数据中提取局部的显著性特征。
 关于混合神经网络在时间序列数据的预测趋势问题的使用，目前相关研究还不是很多。
 
@@ -45,9 +47,12 @@ TreNet学习的预测函数的输入由两部分组成，分别是LSTM从历史�
 
 ## 三、Experiment
 实验中使用的数据集为**Power Consumption**(PC)、**Gas Sensor**(GasSensor)、**Stock Transaction**(Stock)。其中PC数据集使用电压序列，GasSensor数据集使用空气中乙烯和甲烷的混合气体时间序列。
+
 为了便于实验结果的解释，趋势的斜率由有界值范围[-90，90]中的角度表示。趋势的持续时间通过趋势所覆盖的数据点数来衡量。将历史趋势序列、局部原始数据和目标趋势结合起来，对每个时间序列子序列进行数据实例构建。实验中对数据实例进行随机变换，其中10%用于测试数据集，其他的用于交叉验证。PC数据集中有42279个实例，GasSensor数据集中有4418个实例，Stock数据集中有10014个实例。
-与TreNet进行对比的模型有**CNN**、**LSTM**、**ConvNet+LSTM(CLSTM)**、**SupportVectorRegression(SVR)**、**Pattern-based Hidden Markov Model(pHMM)**和**Naive**。
-使用的评价指标是**RMSE(Root Mean Square Error，即均方根差)**。RMSE值越低，说明预测得越准确。此外，为了防止训练中出现过拟合，使用了dropout和L2正则化控制神经网络的容量。对于训练数据中需要局部原始数据的方法(例如SVRBF，SVPOLY，SVSIG和TreNet)，通过交叉验证选择局部数据集的大小。
+
+与TreNet进行对比的模型有**CNN**、**LSTM**、**ConvNet+LSTM(CLSTM)**、**SupportVectorRegression(SVR)**、**Pattern-based Hidden Markov Model(pHMM)**和**Naive**。使用的评价指标是**RMSE(Root Mean Square Error，即均方根差)**。RMSE值越低，说明预测得越准确。
+
+此外，为了防止训练中出现过拟合，使用了dropout和L2正则化控制神经网络的容量。对于训练数据中需要局部原始数据的方法(例如SVRBF，SVPOLY，SVSIG和TreNet)，通过交叉验证选择局部数据集的大小。
 
 实验中首先研究了TreNet与其他模型的预测性能。结果表明，TreNet在时间与斜率预测方面始终优于其他模型，最多可以减少约30％的误差。与CNN和LSTM模型相比，结果证明TreNet的混合结构能够利用CNN和LSTM捕获的信息来提高性能。由于HMM(隐马尔可夫模型)的表示能力有限，pHMM方法的性能较差。此外，在斜率预测方面，基于SVR的方法可以得到与TreNet差不多的结果。
 
