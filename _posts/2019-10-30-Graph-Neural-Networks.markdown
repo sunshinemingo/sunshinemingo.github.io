@@ -19,29 +19,11 @@ Github推出的Reactions功能可以让开发者们快速地表达自己对于is
 
 ![img](https://github.com/sunshinemingo/sunshinemingo.github.io/raw/master/img/image_md/image_27.png)
 
-其中，
-***Thumbs up*** 表示接受或者认可；
-***Thumbs down*** 表示拒绝或者不赞成；
-***Laugh*** 表达有趣或者高兴，也可以用来表示讽刺和嘲讽；
-***Hooray*** 表示庆祝或者高兴；
-***Confused*** 表达对于某一特定主题感到困惑或者在理解上有困难；
-***Heart*** 表达强烈的接受或者赞成。
+
 
 ## 二、Study Design
-文中从**Reactions的使用**和**Reactions的影响**两方面，共**9**个问题进行了调查研究。其中，Reactions的使用方面包含了5个问题，Reactions的影响方面包含了4个问题。
-###### Reactions的使用：
-问题1：Do developers use reactions? 
-问题2：What are the most common reactions? 
-问题3：How is the usage of reactions evolving? 
-问题4：Do popular projects have more reactions? 
-问题5：Do certain types of issues have more reactions? 
-###### Reactions的影响：
-问题6：Do issues with more reactions get resolved faster? 
-问题7：Do issues with more reactions have more discussion? 
-问题8：Do negative reactions inhibit further participation?  
-问题9：Do reactions reduce the noise in issue discussions? 
 
-文中只对issues及其相关的评论中的reactions进行了分析。研究人员收集了自2016年3月13日，即reactions功能正式发布后的项目中的issues，一共从4841个Github项目中收集了2544304个issues和9775928条评论，平均每个issue有3.84条评论。并且这些项目由70种不同的编程语言实现。
+
 
 ## 三、Result
 
