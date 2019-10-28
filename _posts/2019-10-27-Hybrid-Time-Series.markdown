@@ -51,7 +51,7 @@ TreNet预测函数的输入由两部分组成，分别是LSTM从历史数据趋�
 
 与TreNet进行对比的模型有**CNN**、**LSTM**、**ConvNet+LSTM(CLSTM)**、**SupportVectorRegression(SVR)**、**Pattern-based Hidden Markov Model(pHMM)**和**Naive**。使用的评价指标是**RMSE(Root Mean Square Error，即均方根差)**。RMSE值越低，说明预测得越准确。
 
-此外，为了防止训练中出现过拟合，使用了dropout和L2正则化控制神经网络的容量。对于训练数据中需要局部原始数据的方法(例如SVRBF，SVPOLY，SVSIG和TreNet)，通过交叉验证选择局部数据集的大小。
+此外，为了防止训练中出现过拟合，使用了dropout和L2正则化。对于训练数据中需要局部原始数据的方法(例如SVRBF，SVPOLY，SVSIG和TreNet)，通过交叉验证选择局部数据集的大小。
 
 实验中首先研究了TreNet与其他模型的预测性能。结果表明，TreNet在持续时间与斜率的预测方面始终优于其他模型，最多可以减少约30％的误差。与CNN和LSTM模型相比，结果证明TreNet的混合结构能够利用CNN和LSTM捕获的信息来提高性能。由于HMM(隐马尔可夫模型)的表示能力有限，pHMM方法的性能较差。此外，在斜率预测方面，基于SVR的方法可以得到与TreNet差不多的结果。
 

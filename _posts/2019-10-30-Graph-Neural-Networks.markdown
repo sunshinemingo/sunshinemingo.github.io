@@ -4,7 +4,7 @@ title:      "《Graph Neural Networks- A Review of Methods and Applications》�
 subtitle:   "Analysis of the real usage and impact of GitHub reactions"
 date:       2019-10-30
 author:     "Haoyue"
-header-img: "img/post-bg-reactions.jpg"
+header-img: "img/post-bg-graph-networks.jpg"
 tags:
     - 读书
     - 生活
@@ -12,64 +12,64 @@ tags:
 
 ## 《Graph Neural Networks- A Review of Methods and Applications》读书笔记
 
-这是一篇发表在SBES2019，巴西第三十三届软件工程研讨会论文集中的论文。针对Github在2016年推出的一项新的社交功能——类似于表情符号的**Reactions**，研究了其在软件开发方面的使用情况以及影响，并根据所得结果给出了一些实用性的建议。
+这是一篇发表在SBES2019，巴西第三十三届软件工程研讨会论文集中的论文。许多学习任务都需要处理包含丰富元素间关系信息的图数据。物理系统建模、分子指纹学习、蛋白质界面预测、疾病分类等都需要一个模型从图输入中学习。在文本、图像等非结构化数据学习领域，对提取出来的句子依赖树、图像场景图等结构进行推理是一个重要的研究课题，也需要图形推理模型。图神经网络(GNNs)是一种连接模型，它通过在图节点之间传递消息来捕获图的依赖性。与标准的神经网络不同，图神经网络保留了一种状态，这种状态可以用任意深度表示来自其邻域的信息。虽然原始的gnn很难进行定点训练，但是最近在网络体系结构、优化技术和并行计算方面的进展使使用它们进行成功的学习成为可能。近年来，基于图卷积网络(graph convolutional network, GCN)、图注意网络(graph attention network, GAT)、门控图神经网络(gated graph neural network, GGNN)等图神经网络变体的系统在上述许多任务上都表现出了突破性的性能。在这项调查中，我们详细回顾了现有的图神经网络模型，系统地分类应用，并提出了四个有待进一步研究的问题。
 
 ## 一、Background
-Github推出的Reactions功能可以让开发者们快速地表达自己对于issues和pull requests的感受。Github一共提供了**6**种不同的Reactions，分别是 ***Thumbs up***，***Thumbs down***，***Laugh***，***Hooray***，***Confused***，***Heart***。
+图是一种数据结构，它对一组对象(节点)及其关系(边)进行建模。作为机器学习中唯一一个非欧几里得数据结构，图的分析主要是节点分类、关系预测和聚类。由于其较好的性能和可解释性，GNN已经成为一种广泛应用的图分析方法。
 
-![img](https://github.com/sunshinemingo/sunshinemingo.github.io/raw/master/img/image_md/image_27.png)
+GNN的第一个动机源于卷积神经网络(CNN)。CNN模型的关键点在于局部连接、权值共享和多层使用。这些关键点对于解决图领域中的问题也很重要。然而CNN只能在规则的欧几里得数据上运行，如图像(2维网格)和文本(1维序列)。由于很难定义局部卷积滤波器以及池化操作，因此阻碍了CNN模型从欧几里得空间到非欧几里得空间的转换。
+
+GNN的另一个动机来自图嵌入(Graph Embedding)，它学习图像中节点、边或子图的低维向量空间表示。在图分析中，传统的机器学习方法依赖于人为设计特征，并且由于其不灵活性和高成本而受到限制。DeepWalk、node2vec、LINE、TADW等方法在网络表示学习领域取得了很大的成功。然而，这些方法计算效率低下且泛化能力差。
+
+基于CNN和Graph Embedding，提出了GNN。它可以对由元素及其相关性组成的输入和/或输出进行建模。此外，图神经网络可以使用RNN内核同时对图的扩散过程进行建模。
+
+类似于CNN和RNN的标准神经网络不能正确地处理图形输入，因为它们以特定顺序堆叠节点的特征。为了解决这个问题，GNN分别在每个节点上传播，而忽略节点的输入顺序。图形中的边表示两个节点之间的依赖关系，然而在标准神经网络中，这种依赖关系被认为是节点的特征。通常，GNN通过节点附近状态的加权总和来更新节点的隐藏状态。此外，推理是高级人工智能的一个非常重要的研究主题，人脑的推理过程几乎基于从日常经验中提取的图形。标准神经网络通过学习数据分布能够生成合成图像和文档，但他们仍然无法从大型实验数据中学习推理图。
+
+文章对图神经网络进行了广泛的总结，并做出了以下贡献：
+1. 文章详细介绍了图神经网络的经典模型，主要包括其原始模型，不同的变体和几个通用框架。文中对该领域中的各种模型进行了研究，并提供了统一的表示形式，以呈现不同模型中的不同传播步骤。通过识别相应的聚合器和更新器，能够轻松地区分不同的模型。
+2. 文章将图神经网络的应用系统地归类为结构化场景、非结构化场景和其他场景，并介绍了不同场景中的主要应用。
+3. 本文为未来的研究提出四个未解决的问题。文章对每个问题进行了详细分析，并提出了未来的研究方向。
+
+## 二、Models
+### 1. Graph Neural Networks
+在图中，每个节点是由其特征和相关节点定义的。GNN的目标是学习一个状态嵌入，其中包含每个节点的邻域信息。GNN中有两种函数，局部转移函数(local transition function)和局部输出函数(local output function)。局部转移函数在所有节点中共享，根据输入邻域更新节点状态，局部输出函数描述输出是如何生成的。
+
+但是，GNN模型仍然存在一定的限制：
+1. 针对固定点迭代更新节点的隐藏状态效率低下。如果放宽对不动点的假设，可以设计一个多层GNN来得到节点及其邻域的稳定表示。
+2. GNN在迭代中使用相同的参数，而很多流行的神经网络在不同的层中使用不同的参数，分层进行特征的提取。此外，节点隐藏状态的更新是一个顺序过程，可以从RNN内核(如GRU和LSTM)中获益。
+3. 图形的边缘包含一些特征信息，这些特征无法在原始GNN模型中建模。此外，如何学习边缘的隐藏状态也是一个重要的问题。
+4. 如果关注节点的表示而不是图形的表示，则不适合使用固定点，因为固定点上的表示分布在数值上较为平滑，并且对于区分每个节点的信息量较小。
+
+### 2. Variants of Graph Neural Networks
+图神经网络的不同变体的概览如下图所示：
+![img](https://github.com/sunshinemingo/sunshinemingo.github.io/raw/master/img/image_md/image_36.png)
+
+#### (1)Graph Types
+##### Directed Graphs
+无向边可以看作是两条有向边，表示两个节点之间存在关联。但是，有向边能够比无向边表示更多的信息。DGP使用两种权重矩阵，合并更加精确的结构信息。
+
+##### Heterogeneous Graphs
+异构图中有不同种类的节点，最简单的处理方法是将每个节点的类型转换为与原始特征连接的one-hot特征向量。GraphInception在传播中引入了元路径(metapath)的概念，使用元路径，可以根据邻居的节点类型和距离进行分组。对于每个邻居组，GraphInception将其看作同构图中的子图进行传播，并将不同同构图的传播结果连接起来以进行集合节点的表示。HAN利用了节点级别和语义级别的注意力，并且能够同时考虑节点重要性和元路径。
+
+##### Graphs with Edge Information
+图中的每条边具有额外的信息，例如边的权重或者类型。有两种方法处理这种图形；
+1. 将原始图像转换成二分图。原始边变成节点，并且将一条原始边拆分成两条新边，这意味着在边缘节点和开始/结束节点之间有两条新边。此处提到了G2S模型。
+2. 针对不同类型的边上的传播使用不同的权重矩阵。r-GCN引入两种正则化以减少用于建模关系量的参数数量：basis分解和block-diagonal分解。
+
+##### Dynamic Graphs
+动态图具有静态的图形结构和动态的输入。为了获取两种信息，DCRNN和STGCN首先通过GNN收集空间信息，然后将输出输入到序列模型中。不同地，Structural-RNN和ST-GCN同时收集空间信息和时间信息，它们通过时间连接扩展了静态图结构，因此可以在扩展图上应用传统的GNN。
+
+#### (2)Propagation Types
+
+## 三、Applications
 
 
 
-## 二、Study Design
+## 四、Open problems
 
 
 
-## 三、Result
 
-#### 问题1：Do developers use reactions?
-在文中使用的数据集中，87.0%的issues和89.3%的评论没有使用reactions。但是如果考虑整个issues的过程(包括issues和评论)，发现有28.4%至少含有一个reaction。
-MICROSOFT/VSCODE项目中的issue——*Allow for floating windows*拥有最多的reactions(3654个reactions)；至于评论，WEBASSEMBLY/DESIGN项目中的issue——*#980 – WebAssembly logo voting*的评论中的reactions数目最多。
-此外，研究者们还发现，使用C++语言实现的项目获得的reactions最多，Objective-C语言实现的项目获得的reactions最少，猜测原因是iOS开发正转向Swift，因此，Objective-C项目可能会被弃用。
 
-#### 问题2：What are the most common reactions?
-***Thumbs up*** 是最常用的reaction(78.7%)，其次是 ***Hooray*** 和 ***Heart***，两者的占比均为5.9%，然后是 ***Thumbs down***(5.0%)。***Confused*** 是最不常用的reaction(1.7%)。
+## 五、Conclusion
 
-#### 问题3：How is the usage of reactions evolving?
-自从GitHub推出reactions以来，reactions的使用在不断增加。
-在2018年，开发者使用的reactions比2017年增加了32.5％。相比之下，自2016年以来，每个月的新issues的数量几乎保持不变。至于每种reaction类型的发展，发现现有的每个reaction的发展方式没有很大区别。
-
-#### 问题4：Do popular projects have more reactions?
-项目的受欢迎程度与其获得的reactions的数量之间基本没有关联关系。
-
-#### 问题5：Do certain types of issues have more reactions?
-文中针对八个类型的issues进行了分析，分别是*bug*，*duplicate*，*enhancement*，*invalid*，*question*，*wontfix*，*help*和*stale*，其中 ***bug*** 是最常见的issues类型。
-当只考虑*bug*和*enhancement*的时候，***enhancement*** 类型的issues经常获得reactions，每个*bug*获得的reactions的数量(0.35)比每个*enhancement*获得的reactions的数量(1.39)低四倍。
-而且，issue和reaction的类型之间存在关联。*Thumbs down*，*Laugh*和*Confused*在无效(*invalid*)的issues中最为常见。
-
-#### 问题6：Do issues with more reactions get resolved faster?
-针对该问题，文中分析了*bug*和*enhancement*类型的issues，并且只分析至少含有102个issues的仓库。
-含有reactions的*bug*和*enhancement*类型的issues需要更长的时间才能关闭，猜测是因为这些issues比较复杂，需要开发者更多的时间去解决。
-
-#### 问题7：Do issues with more reactions have more discussion?
-文中比较了*bug*和*enhancement*类型中没有reactions和至少含有两个reactions的issues中讨论的数量。含有reactions的*bug*和*enhancement*类型的issues需要更长时间的讨论。
-因此，reactions倾向于出现在需要进行更多讨论的相对复杂的issues中。
-
-#### 问题8：Do negative reactions inhibit further participation?
-大多数开发者收到的负面reactions很少，而其他开发者可能收到很多。与其他社交平台不同，负面reactions不会影响GitHub的开发者参与进某一仓库，并进行下一步的开发。
-
-#### 问题9：Do reactions reduce the noise in issue conversations?
-Reactions没有减少评论中表情符号的使用，但是评论中只使用一个*Thumbs up*表情符号的现象大大减少。
-
-## 四、Practical Recommendation
-1. 使用reactions可以表达修复bugs或者实现新功能的重要性。
-2. 使用reactions可以进行用户调查。
-3. 在发行新版本之前，可以使用reactions收集用户的反馈。
-4. 使用reactions可以表明一个无效的issue。
-5. 与*bug*类型的issues相比，用户经常对*enhancement*类型的issues做出reactions。这可能揭示了GitHub维护者需要不断开发新功能来发展其系统的压力。
-6. GitHub用户不应该期望通过对issues做出reactions，使得issues在几天之内得到处理。
-7. GitHub用户不应该将reactions视为能够加速修复bugs或者实现新功能的工具。
-8. Reactions不应该给开发者带来压力，它只提供反馈。
-9.  GitHub开发者不应该因为负面reactions而放弃项目。
-10. GitHub应该考虑支持其他表情符号，例如*Clapping hands*。
-11. 允许GitHub开发者突出显示issues或者评论的句子，然后仅在突出显示的文本中使用reactions。
