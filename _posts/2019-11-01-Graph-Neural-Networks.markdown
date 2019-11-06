@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "《Graph Neural Networks- A Review of Methods and Applications》读书笔记"
-subtitle:   "Analysis of the real usage and impact of GitHub reactions"
+subtitle:   "A comprehensive review of graph neural networks"
 date:       2019-11-01
 author:     "Haoyue"
 header-img: "img/post-bg-graph-networks.jpg"
@@ -43,26 +43,21 @@ GNN的另一个动机来自图嵌入(Graph Embedding)，它学习图像中节点
 ### 2. Variants of Graph Neural Networks
 图神经网络的不同变体的概览如下图所示：
 ![img](https://github.com/sunshinemingo/sunshinemingo.github.io/raw/master/img/image_md/image_36.png)
-
 #### (1)Graph Types
 ##### Directed Graphs
 无向边可以看作是两条有向边，表示两个节点之间存在关联。但是，有向边能够比无向边表示更多的信息。DGP使用两种权重矩阵，合并更加精确的结构信息。
-
 ##### Heterogeneous Graphs
 异构图中有不同种类的节点，最简单的处理方法是将每个节点的类型转换为与原始特征连接的one-hot特征向量。GraphInception在传播中引入了元路径(metapath)的概念，使用元路径，可以根据邻居的节点类型和距离进行分组。对于每个邻居组，GraphInception将其看作同构图中的子图进行传播，并将不同同构图的传播结果连接起来以进行集合节点的表示。HAN利用了节点级别和语义级别的注意力，并且能够同时考虑节点重要性和元路径。
-
 ##### Graphs with Edge Information
 图中的每条边具有额外的信息，例如边的权重或者类型。有两种方法处理这种图形；
 1. 将原始图像转换成二分图。原始边变成节点，并且将一条原始边拆分成两条新边，这意味着在边缘节点和开始/结束节点之间有两条新边。此处提到了G2S模型。
 2. 针对不同类型的边上的传播使用不同的权重矩阵。r-GCN引入两种正则化以减少用于建模关系量的参数数量：basis分解和block-diagonal分解。
-
 ##### Dynamic Graphs
 动态图具有静态的图形结构和动态的输入。为了获取两种信息，DCRNN和STGCN首先通过GNN收集空间信息，然后将输出输入到序列模型中。不同地，Structural-RNN和ST-GCN同时收集空间信息和时间信息，它们通过时间连接扩展了静态图结构，因此可以在扩展图上应用传统的GNN。
 
 #### (2)Propagation Types
 GNN模型的不同变体的比较如下图所示。这些变体使用不同的聚合器收集每个节点的邻居信息，使用特定的更新程序更新节点的隐藏状态。
 ![img](https://github.com/sunshinemingo/sunshinemingo.github.io/raw/master/img/image_md/image_37.png)
-
 ##### Convolution
 在图形领域中使用卷积操作，分为频谱法和非频谱(空间)法。
 (1)频谱法使用图形的频谱表示。
@@ -81,23 +76,19 @@ GNN模型的不同变体的比较如下图所示。这些变体使用不同的�
 **MoNet**是一种非欧几里得域上的空间域模型，该模型可以概括已有的几种技术。流形上的GCNN和ACNN或者图形上的GCN和DCNN都可以表示为MoNet的具体实例。
 **GraphSAGE**是一个通用的归纳框架。该框架对节点的局部邻居中的特征进行采样和聚集来生成嵌入。但是，并没有利用全部邻居集，而是通过均匀采样使用固定大小的邻居集。
 **SACNN**使用单变量函数作为滤波器，可以处理欧几里得结构和非欧几里得结构数据。
-
 ##### Gate
 **GGNN**在传播步骤中使用GRU，进行固定步数的递归操作，并使用反向传播计算梯度。
 **Child-Sum Tree-LSTM**和**N-ary Tree-LSTM**每个Tree-LSTM单元包含输入门、输出门、记忆单元和隐藏状态，并且为每个子类设置一个遗忘门，使得每个Tree-LSTM单元可以选择性地合并每个子类的信息。如果树最多有K个分支且每个节点的所有子节点都被排好序，则可以使用N-ary Tree-LSTM。与Child-Sum Tree-LSTM相比，N-ary Tree-LSTM为每个子类引入单独的参数矩阵，可以学习更多关于单元子类状态的细粒度表示。
 N. Peng等人基于关系提取任务提出Graph LSTM的变体，最大的不同是图中的边有标签，并且使用不同的权重矩阵表示不同的标签。
 **S-LSTM**目的是改进文本编码，将文本转换成图，使用Graph LSTM学习表示。
 X. Liang等人提出的Graph LSTM模型旨在解决语义对象解析任务。它使用置信度驱动方案自适应地选择起始节点并确定节点更新顺序，有特定的更新顺序。
-
 ##### Attention
 **GAT**在传播步骤中使用注意力机制。它通过关注它的邻居来计算每个节点的隐藏状态，遵循自注意力(self-attention)策略。GAT定义了图注意力层(graph attentional layer)，通过叠加该注意力层可以构建任意的图注意力网络。此外，该注意力层使用了multi-head注意力机制来稳定学习过程。它使用了K个独立的注意力机制来计算隐藏状态，然后将其特征连接起来(或计算平均值)。
 **GAAN**也使用了multi-head注意力机制，但是它使用自注意力机制聚集来自不同head的信息，以代替GAT的平均计算。
-
 ##### Skip connection
 **Highway GCN**使用类似于高速公路网络的分层闸，每一层的输出与其输入的选通权重相加
 **Column Network(CLN)**也利用了公路网，但是它使用不同的函数来计算门控权重。
 **Jump Knowledge Network**可以学习自适应、结构感知的表示。模型从最后一层的每个节点的所有中间表示中进行选择，这使模型可以根据需要调整每个节点的有效邻域大小。此外，模型使用了concatenation, max-poolin和LSTM-attention三种方法汇总信息。
-
 ##### Hierarchical Pooling
 **Edge-Conditioned Convolution(ECC)**设计了一个具有递归下采样操作的池化模块，下采样方法是根据拉普拉斯矩阵的最大特征向量的符号将图分解成两个分量。
 DIFFPOOL通过在每一层训练一个分配矩阵，提出了一种可学习的层次聚类模型.
@@ -109,17 +100,13 @@ PinSage提出了基于重要性的采样方法。通过模拟从目标节点开�
 **FastGCN**直接对每一层的感受野进行采样，而不是采样每个节点的邻居，且根据重要性进行采样。
 W. Huang等人介绍了一种参数化、可训练的采样器，可以在前一层的基础上进行分层采样。此外，该自适应采样器可以同时找到最优采样重要性和减少方差。
 SSE提出了用于GNN训练的随机不动点梯度下降法。此方法将嵌入更新视为值函数，将参数更新视为值函数。在训练期间，该算法将对节点进行采样以更新嵌入，并对标记的节点进行采样以交替更新参数。
-
 ##### Receptive Field Control
 J. Chen等人利用节点的历史激活作为控制变量，提出了一种基于控制变量的GCN随机逼近算法。
-
 ##### Data Augmentation
 Co-Training GCN和Self-Training GCN用于扩大训练数据集。前者查找训练数据的最近邻，后者遵循类似Boosting的方法。
-
 ##### Unsupervised Training
 图形自动编码器的目的是通过无监督的训练方式将节点表示为低维向量。**GAE(图形自动编码器)**首先使用GCN对图中的节点进行编码。然后使用一个简单的解码器来重建邻接矩阵，并根据原始邻接矩阵与重构矩阵之间的相似度来计算损失。
 **Adversarially Regularized Graph Auto-encoder(ARGA)**运用生成对抗网络(GAN)来规范化基于GCN的图形自动编码器以遵循先前的分布。
-
 
 ### 3. General Frameworks
 #### (1)Message Passing Neural Networks(MPNNs)
@@ -155,7 +142,6 @@ GN块可以组成复杂的结构。任意数量的GN块可以按顺序组成，�
 ##### Molecular Fingerprints
 分子指纹计算，是指分子特征向量的计算，它是计算机辅助药物设计的核心步骤。传统的分子指纹是手工制作并且是固定的。将GNN应用于分子图，可以获得较好的指纹图谱。
 **neural graph fingerprints**通过GCN计算子结构的特征向量并求和，得到整体表示。
-
 ##### Protein Interface Prediction
 **Protein Interface Prediction**是一个具有挑战性的问题，在药物发现和设计中有着重要的应用。提出的基于GCN的方法分别学习配体和受体蛋白残基的表示，并将它们融合在一起进行两两分类。
 
